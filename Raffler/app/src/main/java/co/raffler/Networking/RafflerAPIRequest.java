@@ -1,15 +1,11 @@
 package co.raffler.Networking;
 
 import android.content.Context;
-import android.util.Log;
-
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
 
@@ -27,38 +23,45 @@ public class RafflerAPIRequest {
     private static final Integer HTTP_TIMEOUT_DURATION = 10000;
 
     private String mEndPoint;
-    private Boolean mAuthenticated;
     private Integer mApiVersion;
+    private Boolean mAuthenticated;
+    private RetryPolicy mRetryPolicy;
 
     public RafflerAPIRequest(String endPoint, Boolean authenticated, Integer apiVersion) {
         mEndPoint = endPoint;
-        mAuthenticated = authenticated;
         mApiVersion = apiVersion;
+        mAuthenticated = authenticated;
+        mRetryPolicy = getRetryPolicy(HTTP_TIMEOUT_DURATION);
     }
 
     public void retrievePayload(Context context, HTTPMethod method, JSONObject params, RafflerAPIResponseListener listener) {
+        Request request = getRequest(context, method, params, listener);
+        request.setRetryPolicy(mRetryPolicy);
+        addRequestToQueue(request, context);
+    }
 
-        JsonObjectRequest request = new JsonObjectRequest(
-                                    getHTTPMethod(method),
-                                    mEndPoint,
-                                    params,
-                                    getResponseListener(listener),
-                                    getErrorListener(listener)) {
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = super.getHeaders();
-                HashMap<String, String> rafflerHeaders = new HashMap<String, String>();
-                rafflerHeaders.put(API_VERSION_HEADER, "V" + mApiVersion);
-                if (mAuthenticated) { rafflerHeaders.put(API_TOKEN_HEADER, "token goes here"); }
-                rafflerHeaders.putAll(headers);
-                return rafflerHeaders;
-            }
-        };
-        request.setRetryPolicy(getRetryPolicy());
+    private void addRequestToQueue(Request request, Context context) {
         RafflerRequestQueue.getInstance(context)
                            .getRequestQueue()
                            .add(request);
+    }
+
+    private Request getRequest(Context context, HTTPMethod method, JSONObject params, RafflerAPIResponseListener listener) {
+        return new RafflerJSONObjectRequest(getHTTPMethod(method),
+                                            mEndPoint,
+                                            params,
+                                            getResponseListener(listener),
+                                            getErrorListener(listener),
+                                            getHeaders());
+    }
+
+    private Map<String, String> getHeaders() {
+        HashMap<String, String> headers = new HashMap<String, String>();
+        headers.put(API_VERSION_HEADER, "V" + mApiVersion);
+        if (mAuthenticated) {
+            headers.put(API_TOKEN_HEADER, "token goes here");
+        }
+        return headers;
     }
 
     private Integer getHTTPMethod(HTTPMethod method) {
@@ -90,9 +93,8 @@ public class RafflerAPIRequest {
         };
     }
 
-    private DefaultRetryPolicy getRetryPolicy() {
-        return new DefaultRetryPolicy(
-                HTTP_TIMEOUT_DURATION,
+    private DefaultRetryPolicy getRetryPolicy(Integer timeoutDuration) {
+        return new DefaultRetryPolicy(timeoutDuration,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
     }
