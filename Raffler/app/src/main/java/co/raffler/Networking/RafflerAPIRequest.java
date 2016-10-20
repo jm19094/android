@@ -7,6 +7,7 @@ import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -16,11 +17,12 @@ import java.util.Map;
  * Created by petemorris on 14/10/2016.
  */
 
-public class RafflerAPIRequest {
+public class RafflerAPIRequest implements APIRequest {
 
     private static final String API_VERSION_HEADER = "X-API-VERSION";
     private static final String API_TOKEN_HEADER  = "X-SESSION-TOKEN";
     private static final Integer HTTP_TIMEOUT_DURATION = 10000;
+    private static final String PAYLOAD_KEY = "payload";
 
     private String mEndPoint;
     private Integer mApiVersion;
@@ -79,7 +81,12 @@ public class RafflerAPIRequest {
         return new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                listener.onResponse(response);
+                try {
+                    JSONObject payload = response.getJSONObject(PAYLOAD_KEY);
+                    listener.onResponse(payload);
+                } catch (JSONException e) {
+                    listener.onErrorResponse(null);
+                }
             }
         };
     }
