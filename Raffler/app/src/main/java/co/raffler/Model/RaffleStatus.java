@@ -6,59 +6,59 @@ package co.raffler.Model;
 
 public class RaffleStatus {
 
-    private Integer jackpot;
-    private Integer jackpotIncludingReferrals;
-    private String ticket;
-    private String yesterdayTicket;
-    private Boolean isYesterdayPrizeMonetary;
-    private String yesterdayPrizeDescription;
-    private String yesterdayPrizeIncludingReferralsDescription;
-    private Boolean yesterdayPrizeIsClaimed;
-    private String yesterdayPrizeWinToken;
-    private String yesterdayJackpotTicket;
-    private String resultsQuip;
+    private Integer mJackpot;
+    private Integer mJackpotIncludingReferrals;
+    private String mTicket;
+    private String mYesterdayTicket;
+    private Boolean mIsYesterdayPrizeMonetary;
+    private String mYesterdayPrizeDescription;
+    private String mYesterdayPrizeIncludingReferralsDescription;
+    private Boolean mYesterdayPrizeIsClaimed;
+    private String mYesterdayPrizeWinToken;
+    private String mYesterdayJackpotTicket;
+    private String mResultsQuip;
 
     public Integer getJackpot() {
-        return jackpot;
+        return mJackpot;
     }
 
     public Integer getJackpotIncludingReferrals() {
-        return jackpotIncludingReferrals;
+        return mJackpotIncludingReferrals;
     }
 
     public String getTicket() {
-        return ticket;
+        return mTicket;
     }
 
     public String getYesterdayTicket() {
-        return yesterdayTicket;
+        return mYesterdayTicket;
     }
 
     public Boolean getYesterdayPrizeMonetary() {
-        return isYesterdayPrizeMonetary;
+        return mIsYesterdayPrizeMonetary;
     }
 
     public String getYesterdayPrizeDescription() {
-        return yesterdayPrizeDescription;
+        return mYesterdayPrizeDescription;
     }
 
     public String getYesterdayPrizeIncludingReferralsDescription() {
-        return yesterdayPrizeIncludingReferralsDescription;
+        return mYesterdayPrizeIncludingReferralsDescription;
     }
 
     public Boolean getYesterdayPrizeIsClaimed() {
-        return yesterdayPrizeIsClaimed;
+        return mYesterdayPrizeIsClaimed;
     }
 
     public String getYesterdayPrizeWinToken() {
-        return yesterdayPrizeWinToken;
+        return mYesterdayPrizeWinToken;
     }
 
     public String getYesterdayJackpotTicket() {
-        return yesterdayJackpotTicket;
+        return mYesterdayJackpotTicket;
     }
 
     public String getResultsQuip() {
-        return resultsQuip;
+        return mResultsQuip;
     }
 }

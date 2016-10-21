@@ -8,59 +8,59 @@ import java.util.Date;
 
 public class User {
 
-    private String firstName;
-    private String lastName;
-    private String emailAddress;
-    private Date birthday;
-    private Country country;
-    private Province province;
-    private String zipCode;
-    private Boolean isMale;
-    private String referralCode;
-    private String currencyCode;
-    private RaffleStatus raffleStatus;
+    private String mFirstName;
+    private String mLastName;
+    private String mEmailAddress;
+    private Date mBirthday;
+    private Country mCountry;
+    private Province mProvince;
+    private String mZipCode;
+    private Boolean mIsMale;
+    private String mReferralCode;
+    private String mCurrencyCode;
+    private RaffleStatus mRaffleStatus;
 
     public RaffleStatus getRaffleStatus() {
-        return raffleStatus;
+        return mRaffleStatus;
     }
 
     public String getFirstName() {
-        return firstName;
+        return mFirstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return mLastName;
     }
 
     public String getEmailAddress() {
-        return emailAddress;
+        return mEmailAddress;
     }
 
     public Date getBirthday() {
-        return birthday;
+        return mBirthday;
     }
 
     public Country getCountry() {
-        return country;
+        return mCountry;
     }
 
     public Province getProvince() {
-        return province;
+        return mProvince;
     }
 
     public String getZipCode() {
-        return zipCode;
+        return mZipCode;
     }
 
     public Boolean getMale() {
-        return isMale;
+        return mIsMale;
     }
 
     public String getReferralCode() {
-        return referralCode;
+        return mReferralCode;
     }
 
     public String getCurrencyCode() {
-        return currencyCode;
+        return mCurrencyCode;
     }
 }

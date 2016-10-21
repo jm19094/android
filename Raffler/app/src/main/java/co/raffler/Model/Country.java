@@ -30,8 +30,8 @@ public class Country extends RafflerModelObject {
     private static final String ID_KEY = "id";
     private static final String NAME_KEY = "name";
 
-    private Integer id;
-    private String name;
+    private Integer mId;
+    private String mName;
 
     public Country(JSONObject payload) throws JSONException {
         super(payload);
@@ -39,16 +39,16 @@ public class Country extends RafflerModelObject {
 
     @Override
     void bindPayload(JSONObject payload) throws JSONException {
-        this.id = payload.getInt(ID_KEY);
-        this.name = payload.getString(NAME_KEY);
+        this.mId = payload.getInt(ID_KEY);
+        this.mName = payload.getString(NAME_KEY);
     }
 
     public Integer getId() {
-        return id;
+        return mId;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
 

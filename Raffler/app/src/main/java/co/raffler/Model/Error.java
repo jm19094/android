@@ -6,25 +6,25 @@ package co.raffler.Model;
 
 public class Error {
 
-    private String message;
-    private Integer code;
-    private String domain;
+    private String mMessage;
+    private Integer mCode;
+    private String mDomain;
 
     public Error(String domain, Integer code, String message) {
-        this.message = message;
-        this.code = code;
-        this.domain = domain;
+        this.mMessage = message;
+        this.mCode = code;
+        this.mDomain = domain;
     }
 
     public String getMessage() {
-        return message;
+        return mMessage;
     }
 
     public Integer getCode() {
-        return code;
+        return mCode;
     }
 
     public String getDomain() {
-        return domain;
+        return mDomain;
     }
 }

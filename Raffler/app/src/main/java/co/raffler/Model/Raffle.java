@@ -8,19 +8,19 @@ import java.util.Date;
 
 public class Raffle {
 
-    private Date rolloverDate;
-    private String rolloverDateString;
-    private Integer rolloverSecondsRemaining;
+    private Date mRolloverDate;
+    private String mRolloverDateString;
+    private Integer mRolloverSecondsRemaining;
 
     public Date getRolloverDate() {
-        return rolloverDate;
+        return mRolloverDate;
     }
 
     public String getRolloverDateString() {
-        return rolloverDateString;
+        return mRolloverDateString;
     }
 
     public Integer getRolloverSecondsRemaining() {
-        return rolloverSecondsRemaining;
+        return mRolloverSecondsRemaining;
     }
 }

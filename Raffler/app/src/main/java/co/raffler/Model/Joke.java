@@ -6,9 +6,9 @@ package co.raffler.Model;
 
 public class Joke {
 
-    private String text;
+    private String mText;
 
     public String getText() {
-        return text;
+        return mText;
     }
 }
