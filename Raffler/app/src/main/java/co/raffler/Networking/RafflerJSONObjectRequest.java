@@ -3,14 +3,8 @@ package co.raffler.Networking;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
-
 import org.json.JSONObject;
-
 import java.util.Map;
-
-/**
- * Created by petemorris on 15/10/2016.
- */
 
 public class RafflerJSONObjectRequest extends JsonObjectRequest {
 

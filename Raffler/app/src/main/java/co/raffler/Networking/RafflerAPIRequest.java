@@ -13,10 +13,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by petemorris on 14/10/2016.
- */
-
 public class RafflerAPIRequest implements APIRequest {
 
     private static final String API_VERSION_HEADER = "X-API-VERSION";

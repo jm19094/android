@@ -2,7 +2,6 @@ package co.raffler.Model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import co.raffler.Networking.ModelObjectFactory;
 
 /**
